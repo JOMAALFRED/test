@@ -9,7 +9,7 @@ metadata:
   name: app-js
   namespace: cat
 spec:
-  replicas: 3
+  replicas: 6
   selector:
     matchLabels:
       app: app-js
