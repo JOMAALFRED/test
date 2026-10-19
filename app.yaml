@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: mikesir87/cats:3.0
+          image: mikesir87/cats:2.0
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
