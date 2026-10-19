@@ -9,7 +9,7 @@ metadata:
   name: app-js
   namespace: cat
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: app-js
@@ -58,4 +58,4 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
-      nodePort: 30081
+      nodePort: 30082
