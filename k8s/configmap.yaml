@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-js-config
+  namespace: cat
+data:
+  APP_ENV: "development"
+  APP_NAME: "cats"
+  LOG_LEVEL: "info"

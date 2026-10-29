@@ -21,7 +21,10 @@ spec:
       containers:
         - name: app
           image: mikesir87/cats:1.0
-          imagePullPolicy: Always
+          #imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: app-js-config
           ports:
             - containerPort: 5000
           readinessProbe:
@@ -60,7 +63,21 @@ spec:
       targetPort: 5000
       nodePort: 30082
 
----
+---      
+#apiVersion: v1
+#kind: Service
+#metadata:
+ # name: app-js
+ # namespace: cat
+#spec:
+##  type: LoadBalancer
+ # selector:
+ #   app: app-js
+ # ports:
+   # - port: 80
+     # targetPort: 5000
+      
+#---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -68,6 +85,10 @@ metadata:
   namespace: cat
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+        - cats.local
+      secretName: cats-tls
   rules:
     - host: cats.local
       http:
@@ -79,4 +100,5 @@ spec:
                 name: app-js
                 port:
                   number: 5000
+
 
