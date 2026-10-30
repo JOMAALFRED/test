@@ -7,3 +7,4 @@ data:
   APP_ENV: "development"
   APP_NAME: "cats"
   LOG_LEVEL: "info"
+  RAKOTO : "rakoto"
