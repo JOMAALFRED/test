@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statistiques - Cats v2.0</title>
+    <style>
+        body {
+            background: #171923;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .card {
+            background: #252a3a;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+        .number {
+            font-size: 40px;
+            color: #38bdf8;
+        }
+        a { color: #38bdf8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Statistiques Cats v2.0</h1>
+
+        <div class="card">
+            <h2>Nombre total de consultations</h2>
+            <div class="number">{{ total_visits }}</div>
+        </div>
+
+        <div class="card">
+            <h2>Top 5 des images les plus consultées</h2>
+
+            {% for image, total in popular_images %}
+            <p>
+                Image : {{ image }}
+                <br>
+                Consultations : {{ total }}
+            </p>
+            {% else %}
+            <p>Aucune statistique disponible.</p>
+            {% endfor %}
+        </div>
+
+        <a href="/">Accueil</a>
+        <br><br>
+        <a href="/history">Historique</a>
+    </div>
+</body>
+</html>

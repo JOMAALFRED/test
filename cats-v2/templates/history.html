@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Historique - Cats v2.0</title>
+    <style>
+        body {
+            background: #171923;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .visit {
+            background: #252a3a;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+        }
+        img {
+            width: 100px;
+            border-radius: 8px;
+            vertical-align: middle;
+        }
+        a { color: #38bdf8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Historique des consultations</h1>
+        <p>Les 50 dernières consultations</p>
+
+        {% for visit in visits %}
+        <div class="visit">
+            <img src="{{ visit.image_url }}" alt="Chat">
+            <p>Consultation #{{ visit.id }}</p>
+            <p>Pod : {{ visit.pod_name }}</p>
+            <p>Date : {{ visit.visited_at }}</p>
+        </div>
+        {% else %}
+        <p>Aucune consultation enregistrée.</p>
+        {% endfor %}
+
+        <a href="/">Retour à l'accueil</a>
+        <br><br>
+        <a href="/stats">Voir les statistiques</a>
+    </div>
+</body>
+</html>

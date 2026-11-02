@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cats-v2
+  namespace: cat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cats-v2
+  template:
+    metadata:
+      labels:
+        app: cats-v2
+    spec:
+      containers:
+        - name: cats-v2
+          image: cats-v2:2.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+          env:
+            - name: DB_HOST
+              value: postgres.cat.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 96Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /stats
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 15

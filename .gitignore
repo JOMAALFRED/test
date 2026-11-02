@@ -1,2 +1,4 @@
 *.key
 *.pfx
+
+k8s/postgres/postgres-secret.yaml

@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cats-v2-init-db
+  namespace: cat
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        app: cats-v2-init-db
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: init-db
+          image: cats-v2:2.1
+          imagePullPolicy: IfNotPresent
+          command:
+            - flask
+            - --app
+            - app
+            - init-db
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+          env:
+            - name: DB_HOST
+              value: postgres.cat.svc.cluster.local
+            - name: DB_PORT
+              value: "5432"

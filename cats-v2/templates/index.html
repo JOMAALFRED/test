@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cats v2.0 - Accueil</title>
+    <style>
+        body {
+            background: #171923;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 25px;
+            background: #252a3a;
+            border-radius: 15px;
+        }
+        img {
+            max-width: 100%;
+            max-height: 350px;
+            border-radius: 10px;
+        }
+        a, button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #111827;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐱 Cat Gif Surprise!</h1>
+        <h2>Version 2.0</h2>
+
+        <img src="{{ url }}" alt="Image de chat">
+
+        <p>Served by Kubernetes Pod:</p>
+        <strong>{{ hostname }}</strong>
+
+        <br>
+
+        <a href="/">Nouvelle image</a>
+        <a href="/history">Historique</a>
+        <a href="/stats">Statistiques</a>
+    </div>
+</body>
+</html>
